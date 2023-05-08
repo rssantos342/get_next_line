@@ -6,7 +6,7 @@
 /*   By: ride-sou <ride-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 08:43:04 by ride-sou          #+#    #+#             */
-/*   Updated: 2023/05/05 17:43:47 by ride-sou         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:18:33 by ride-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_strchr(char *temp, char line_break)
 	i = 0;
 	if (!temp)
 		return (0);
-	while (temp[i] != '\0')
+	while (temp[i])
 	{
 		if (temp[i] == line_break)
 			return (&temp[i]);
@@ -51,6 +51,8 @@ char	*ft_strjoin(char *temp, char *buffer)
 		temp = malloc(sizeof(char) * 1);
 		temp[0] = '\0';
 	}
+	if (!temp || !buffer)
+		return (NULL);
 	strjoin = malloc(sizeof(char) *((ft_strlen(temp) + ft_strlen(buffer)) + 1));
 	if (!strjoin)
 		return (NULL);
@@ -66,53 +68,53 @@ char	*ft_strjoin(char *temp, char *buffer)
 char	*ft_get_line(char *temp)
 {
 	int		i;
-	char	*line;
+	char	*str;
 
 	i = 0;
-	if (temp[i] == '\0')
+	if (!temp[i])
 		return (NULL);
 	while (temp[i] != '\0' && temp[i] != '\n')
 		i++;
-	if (temp[i] == '\n')
-		line = malloc(sizeof(char) * (i + 2));
-	else
-		line = malloc(sizeof(char) * (i + 1));
-	if (!line)
+	str = malloc(sizeof(char) * (i + 2));
+	if (!str)
 		return (NULL);
 	i = 0;
 	while (temp[i] != '\0' && temp[i] != '\n')
 	{
-		line[i] = temp[i];
+		str[i] = temp[i];
 		i++;
 	}
 	if (temp[i] == '\n')
-		line[i++] = '\n';
-	line[i] = '\0';
-	return (line);
+	{
+		str[i] = '\n';
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
 
 char	*ft_new_temp(char *temp)
 {
 	int		i;
 	int		j;
-	char	*new_temp;
+	char	*str;
 
 	i = 0;
 	j = 0;
-	while (temp[i] != '\n' && temp[i] != '\0')
+	while (temp[i] != '\n' && temp[i])
 		i++;
-	if (temp[i] == '\0')
+	if (!temp[i])
 	{
 		free(temp);
 		return (NULL);
 	}
-	new_temp = malloc(sizeof(char) * (ft_strlen(temp) - i + 1));
-	if (!new_temp)
+	str = malloc(sizeof(char) * (ft_strlen(temp) - i + 1));
+	if (!str)
 		return (NULL);
 	i = i + 1;
-	while (temp[i] != '\0')
-		new_temp[j++] = temp[i++];
-	new_temp[j] = '\0';
+	while (temp[i])
+		str[j++] = temp[i++];
+	str[j] = '\0';
 	free(temp);
-	return (new_temp);
+	return (str);
 }
