@@ -6,7 +6,7 @@
 /*   By: ride-sou <ride-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 08:41:49 by ride-sou          #+#    #+#             */
-/*   Updated: 2023/05/05 11:43:34 by ride-sou         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:51:13 by ride-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*ft_read_and_join(int fd, char *temp)
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 		{
+			free (temp);
 			free(buffer);
 			return (NULL);
 		}

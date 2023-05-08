@@ -6,7 +6,7 @@
 /*   By: ride-sou <ride-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 08:43:04 by ride-sou          #+#    #+#             */
-/*   Updated: 2023/05/05 12:18:33 by ride-sou         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:50:21 by ride-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,36 +68,36 @@ char	*ft_strjoin(char *temp, char *buffer)
 char	*ft_get_line(char *temp)
 {
 	int		i;
-	char	*str;
+	char	*line;
 
 	i = 0;
 	if (!temp[i])
 		return (NULL);
 	while (temp[i] != '\0' && temp[i] != '\n')
 		i++;
-	str = malloc(sizeof(char) * (i + 2));
-	if (!str)
+	if (temp[i] == '\0')
+		line = malloc(sizeof(char) * (i + 1));
+	else
+		line = malloc(sizeof(char) * (i + 2));
+	if (!line)
 		return (NULL);
 	i = 0;
 	while (temp[i] != '\0' && temp[i] != '\n')
 	{
-		str[i] = temp[i];
+		line[i] = temp[i];
 		i++;
 	}
 	if (temp[i] == '\n')
-	{
-		str[i] = '\n';
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+		line[i++] = '\n';
+	line[i] = '\0';
+	return (line);
 }
 
 char	*ft_new_temp(char *temp)
 {
 	int		i;
 	int		j;
-	char	*str;
+	char	*new_temp;
 
 	i = 0;
 	j = 0;
@@ -108,13 +108,13 @@ char	*ft_new_temp(char *temp)
 		free(temp);
 		return (NULL);
 	}
-	str = malloc(sizeof(char) * (ft_strlen(temp) - i + 1));
-	if (!str)
+	new_temp = malloc(sizeof(char) * (ft_strlen(temp) - i + 1));
+	if (!new_temp)
 		return (NULL);
 	i = i + 1;
 	while (temp[i])
-		str[j++] = temp[i++];
-	str[j] = '\0';
+		new_temp[j++] = temp[i++];
+	new_temp[j] = '\0';
 	free(temp);
-	return (str);
+	return (new_temp);
 }
