@@ -6,7 +6,7 @@
 /*   By: ride-sou <ride-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 08:43:04 by ride-sou          #+#    #+#             */
-/*   Updated: 2023/05/08 15:50:21 by ride-sou         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:25:42 by ride-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*ft_get_line(char *temp)
 	char	*line;
 
 	i = 0;
-	if (!temp[i])
+	if (temp[i] == 0)
 		return (NULL);
 	while (temp[i] != '\0' && temp[i] != '\n')
 		i++;
@@ -103,7 +103,7 @@ char	*ft_new_temp(char *temp)
 	j = 0;
 	while (temp[i] != '\n' && temp[i])
 		i++;
-	if (!temp[i])
+	if (temp[i] == 0)
 	{
 		free(temp);
 		return (NULL);
@@ -112,7 +112,7 @@ char	*ft_new_temp(char *temp)
 	if (!new_temp)
 		return (NULL);
 	i = i + 1;
-	while (temp[i])
+	while (temp[i] != '\0')
 		new_temp[j++] = temp[i++];
 	new_temp[j] = '\0';
 	free(temp);
