@@ -6,7 +6,7 @@
 /*   By: ride-sou <ride-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 08:43:04 by ride-sou          #+#    #+#             */
-/*   Updated: 2023/05/08 16:26:14 by ride-sou         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:35:31 by ride-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_strchr(char *temp, char line_break)
 	i = 0;
 	if (!temp)
 		return (0);
-	while (temp[i])
+	while (temp[i] != '\0')
 	{
 		if (temp[i] == line_break)
 			return (&temp[i]);
@@ -56,9 +56,9 @@ char	*ft_strjoin(char *temp, char *buffer)
 	strjoin = malloc(sizeof(char) *((ft_strlen(temp) + ft_strlen(buffer)) + 1));
 	if (!strjoin)
 		return (NULL);
-	while (temp[++i])
+	while (temp[++i] != '\0')
 		strjoin[i] = temp[i];
-	while (buffer[j])
+	while (buffer[j] != '\0')
 		strjoin[i++] = buffer[j++];
 	strjoin[i] = '\0';
 	free(temp);
@@ -101,7 +101,7 @@ char	*ft_new_temp(char *temp)
 
 	i = 0;
 	j = 0;
-	while (temp[i] != '\n' && temp[i])
+	while (temp[i] != '\n' && temp[i] != '\0')
 		i++;
 	if (temp[i] == 0)
 	{
